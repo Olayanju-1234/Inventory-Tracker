@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var env = require('dotenv').config()
+const dotenv = require("dotenv")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,6 +12,8 @@ var compression = require('compression');
 var helmet = require('helmet');
 
 var app = express();
+
+dotenv.config()
 
 
 //Set up mongoose connection
