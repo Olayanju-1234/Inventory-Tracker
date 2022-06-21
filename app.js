@@ -18,7 +18,7 @@ var app = express();
 var mongoose = require('mongoose');
 // var mongoDB = 'mongodb+srv://inventorytracking:josephstudent@cluster0.smup3.mongodb.net/inventory_tracking?retryWrites=true&w=majority';
 
-var mon = env.parsed.MONGODB_URI;
+var mon = process.env.MONGODB_URI;
 mongoose.connect(mon, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
