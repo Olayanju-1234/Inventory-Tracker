@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1 Title: #{title}
+
+  p #[strong Product: ]
+    a(href=product.url) #{product.product_name}
+  p #[strong Product Price: ] #{`$${product.product_price}`}
+  p #[strong Date added:] #{product.formatted_date_added}
+  p #[strong Category: ] 
+    a(href=product.category.url) #{product.category.category_name}
+  p #[strong Brand: ]
+    a(href=product.brand.url) #{product.brand.brand_name}
+    
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Check Product availability
+
+    each val in product_instances
+      hr
+      if val.status=='Available'
+        p.text-success #{val.status}
+      else if val.status=='Out of stock'
+        p.text-danger #{val.status}
+      else
+        p.text-warning #{val.status}
+      
+      if val.status!='Available'
+        p #[strong Check back:] #{val.check_back_formatted}
+      p #[strong Id:]
+        a(href=val.url) #{val._id}
+
+    else
+      p There are no products in the here.
+
+
+  hr
+  p
+    a(href=product.url+'/delete') 
+      button.btn.btn-primary Delete product
+  p
+    a(href=product.url+'/update') 
+      button.btn.btn-primary Update product
+

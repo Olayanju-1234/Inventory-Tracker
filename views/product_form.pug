@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='product_name') Product:
+      input#product_name.form-control(type='text', placeholder='Name of product' name='product_name' required='true' value=(undefined===product ? '' : product.product_name) )
+
+    div.form-group
+      label(for='product_price') Product Price($):
+      input#product_price.form-control(type='text', placeholder='$' name='product_price' required='true' value= (undefined===product ? '' : product.product_price)) 
+
+    div.form-group
+      label(for='category') Category:
+      select#category.form-control(type='select', placeholder='Select category' name='category' required='true' )
+        - categories.sort(function(a, b) {let textA = a.category_name.toUpperCase(); let textB = b.category_desc.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for category in categories
+          if product
+            option(value=category._id selected=(category._id.toString()===product.category._id.toString() ? 'selected' : false) ) #{category.category_name}
+          else
+            option(value=category._id) #{category.category_name}
+ 
+    div.form-group
+      label(for='brand') Brand:
+      select#brand.form-control(type='select', placeholder='Select brand' name='brand' required='true' )
+        - brands.sort(function(a, b) {let textA = a.brand_name.toUpperCase(); let textB = b.brand_desc.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for brand in brands
+          if product
+            option(value=brand._id selected=(brand._id.toString()===product.brand._id.toString() ? 'selected' : false) ) #{brand.brand_name}
+          else
+            option(value=brand._id) #{brand.brand_name}
+
+    div.form-group
+      label(for='date_added') Date added:
+      input#date_added.form-control(type='date' name='date_added' value=(undefined===product ? '' : product.formatted_date_added) )
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

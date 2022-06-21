@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  br
+  h3= title
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The cart has the following products:
+
+    ul
+      li #[strong Products:] !{data.total_products}
+      li #[strong Brands:] !{data.total_brands}
+      li #[strong Products Instances] !{data.total_product_instances}
+      li #[strong Products available:] !{data.total_available_product_instances}
+      li #[strong Categories:] !{data.total_categories}

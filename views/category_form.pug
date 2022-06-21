@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='category_name') Category:
+      input#category_name.form-control(type='text' name='category_name' required='true' value=(undefined===category ? '' : category.category_name) )
+      label(for='category_desc') Category Description:
+      input#category_desc.form-control(type='text' name='category_desc' required='true' value=(undefined===category ? '' : category.category_desc))
+    
+    button.btn.btn-primary(type='submit') Create
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

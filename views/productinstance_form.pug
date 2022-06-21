@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='product') Product:
+      select#product.form-control(type='select' placeholder='Select product' name='product' required='true')
+        - products.sort(function(a, b) {let textA = a.product_name.toUpperCase(); let textB = b.product_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for product in products
+          option(value=product._id, selected=(selected_product==product._id.toString() ? 'selected' : false) ) #{product.product_name}
+
+    div.form-group
+      label(for='status') Status:
+      select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
+        option(value='Available') Available
+        option(value='Out of stock') Out of stock
+
+
+    div.form-group
+      label(for='check_back') Date when product will be available:
+      input#check_back.form-control(type='date' name='check_back' value=(undefined===productinstance ? '' : productinstance.formatted_due_back))
+
+    
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

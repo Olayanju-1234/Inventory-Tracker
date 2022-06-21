@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  h1 Categories: #{title}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Products
+
+    dl
+      each product in category_products
+        dt
+          a(href=product.url) #{`Name: ${product.product_name}`}
+        dd #{`Price: $${product.product_price}`}
+
+      else
+        p This category has no products

@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+
+  h3 Product: #{productinstance.product.product_name}
+
+  p #[strong Product Name: ]
+    a(href=productinstance.product.url) #{productinstance.product.product_name}
+    p #[strong Product Price: ] #{`$${productinstance.product.product_price}`}
+
+
+  p #[strong Status: ]
+    if productinstance.status=='Available'
+      span.text-success #{productinstance.status}
+    else if productinstance.status=='Out of stock'
+      span.text-danger #{productinstance.status}
+    else
+      span.text-warning #{productinstance.status}
+
+  if productinstance.status!='Available'
+    p #[strong Check back on:] #{productinstance.check_back_formatted}
+
+  hr
+  p
+    a(href=productinstance.url+'/delete') 
+      button.btn.btn-primary(type='delete') Delete
+  p
+    a(href=productinstance.url+'/update') 
+      button.btn.btn-primary(type='update') Update instance
+
+

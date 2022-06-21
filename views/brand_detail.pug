@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  h1 Brands: #{title}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Products based on brands
+
+    dl
+      each product in brand_products
+        dt
+          a(href=product.url) #{product.product_name}
+        dd #{product.product_price}
+
+      else
+        p This brand has no products
