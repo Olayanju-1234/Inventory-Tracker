@@ -17,6 +17,7 @@ var app = express();
 //Set up mongoose connection
 var mongoose = require('mongoose');
 // var mongoDB = 'mongodb+srv://inventorytracking:josephstudent@cluster0.smup3.mongodb.net/inventory_tracking?retryWrites=true&w=majority';
+
 var mon = env.parsed.MONGODB_URI;
 mongoose.connect(mon, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
