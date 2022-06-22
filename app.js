@@ -18,7 +18,7 @@ dotenv.config()
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://inventorytracking:josephstudent@cluster0.smup3.mongodb.net/inventory_tracking?retryWrites=true&w=majority';
+var mongoDB = '';
 
 // var mon = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
